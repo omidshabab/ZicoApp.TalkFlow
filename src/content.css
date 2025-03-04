@@ -1,0 +1,45 @@
+#talkflow-sidebar {
+     position: fixed;
+     right: 0;
+     top: 0;
+     width: 320px;
+     height: 100vh;
+     background-color: hsl(240 10% 3.9%);
+     z-index: 9999;
+     box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+     transition: transform 0.3s ease;
+     overflow-y: auto;
+     color: hsl(0 0% 98%);
+   }
+   
+   #talkflow-sidebar.hidden {
+     transform: translateX(100%);
+   }
+   
+   #talkflow-sidebar-toggle {
+     position: fixed;
+     right: 320px;
+     top: 20px;
+     z-index: 10000;
+     background-color: hsl(240 10% 3.9%);
+     border: 1px solid hsl(240 3.7% 15.9%);
+     border-radius: 50%;
+     width: 40px;
+     height: 40px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+     cursor: pointer;
+     transition: right 0.3s ease;
+   }
+   
+   #talkflow-sidebar-toggle.hidden {
+     right: 20px;
+   }
+   
+   #talkflow-sidebar-toggle svg {
+     width: 20px;
+     height: 20px;
+     color: hsl(0 0% 98%);
+   }
