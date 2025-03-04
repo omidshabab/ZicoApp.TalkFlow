@@ -1,5 +1,6 @@
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
+import browser from "webextension-polyfill";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -35,9 +36,7 @@ export function injectSidebar() {
     toggleButton.id = 'talkflow-sidebar-toggle';
     toggleButton.className = 'hidden';
     toggleButton.innerHTML = `
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 5v14M5 12h14"></path>
-      </svg>
+      <img src="${browser.runtime.getURL('icon/32.png')}" width="20" height="20" alt="TalkFlow Icon" />
     `;
     
     toggleButton.addEventListener('click', () => {
@@ -54,9 +53,7 @@ export function injectSidebar() {
       } else {
         sidebar.classList.add('hidden');
         toggleButton.innerHTML = `
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 5v14M5 12h14"></path>
-          </svg>
+          <img src="${browser.runtime.getURL('icon/32.png')}" width="20" height="20" alt="TalkFlow Icon" />
         `;
         toggleButton.classList.add('hidden');
       }
@@ -66,8 +63,10 @@ export function injectSidebar() {
     document.body.appendChild(toggleButton);
     
     // Initialize React in the sidebar
-    import('./content-ui').then(module => {
+    import('../content-ui').then(module => {
       module.default(sidebarRoot);
+    }).catch(err => {
+      console.error('Failed to initialize React in sidebar:', err);
     });
   }
 }

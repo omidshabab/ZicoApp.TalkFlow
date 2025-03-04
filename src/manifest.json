@@ -1,6 +1,5 @@
 {
-  "{{chrome}}.manifest_version": 3,
-  "{{firefox}}.manifest_version": 2,
+  "manifest_version": 3,
   "name": "TalkFlow - Your AI-powered meeting assistant",
   "description": "AI-powered meeting assistant for Google Meet that provides real-time support during your meetings",
   "icons": {
@@ -13,8 +12,7 @@
   "permissions": ["storage", "tabs"],
   "host_permissions": ["https://meet.google.com/*"],
   "background": {
-    "{{chrome}}.service_worker": "src/background.ts",
-    "{{firefox}}.scripts": ["src/background.ts"]
+    "service_worker": "src/background.ts"
   },
   "content_scripts": [
     {
@@ -25,12 +23,14 @@
   ],
   "web_accessible_resources": [
     {
-      "{{chrome}}.resources": ["src/styles/*", "src/components/*"],
-      "{{chrome}}.matches": ["https://meet.google.com/*"]
-    },
-    {
-      "{{firefox}}.resources": ["src/styles/*", "src/components/*"],
-      "{{firefox}}.matches": ["https://meet.google.com/*"]
+      "resources": [
+        "src/styles/*",
+        "src/components/*",
+        "icon/*",
+        "src/content-ui.tsx",
+        "fonts/*"
+      ],
+      "matches": ["https://meet.google.com/*"]
     }
   ]
 }
